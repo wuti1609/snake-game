@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="score">Score: <span id="score">0</span></div>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div class="fireworks-container"></div>
+    </div>
+    
+    <!-- Virtual Controls for Mobile -->
+    <div id="virtualControls" class="virtual-controls">
+        <div class="control-row">
+            <button class="control-btn" data-direction="up" id="upBtn">↑</button>
+        </div>
+        <div class="control-row">
+            <button class="control-btn" data-direction="left" id="leftBtn">←</button>
+            <button class="control-btn pause-btn" id="pauseBtn">⏸</button>
+            <button class="control-btn" data-direction="right" id="rightBtn">→</button>
+        </div>
+        <div class="control-row">
+            <button class="control-btn" data-direction="down" id="downBtn">↓</button>
+        </div>
+    </div>
+    <div id="gameOverScreen" class="hidden">
+        <div class="gameOverText">Game Over!</div>
+        <div id="encouragementText" class="encouragement"></div>
+        <button id="restartButton">Restart</button>
+    </div>
+    <script src="js/EventSystem.js"></script>
+    <script src="js/InputManager.js"></script>
+    <script src="js/GameEngine.js"></script>
+    <script src="js/Renderer.js"></script>
+    <script src="game.js?v=2.0"></script>
+</body>
+</html>
