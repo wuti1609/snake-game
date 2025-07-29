@@ -4,6 +4,9 @@ class SnakeGame {
         this.canvas = document.getElementById('gameCanvas');
         this.scoreElement = document.getElementById('score');
         
+        // 重启标志，用于区分是重启还是真正的游戏结束
+        this.isRestarting = false;
+        
         // 初始化游戏引擎
         this.gameEngine = new GameEngine(this.canvas);
         
@@ -31,7 +34,10 @@ class SnakeGame {
         
         // 监听游戏结束
         gameEvents.on('game:stopped', () => {
-            this.showGameOver();
+            // 只有在非重启状态下才显示游戏结束界面
+            if (!this.isRestarting) {
+                this.showGameOver();
+            }
         });
         
         // 监听里程碑达成
@@ -74,13 +80,13 @@ class SnakeGame {
     restart() {
         console.log('重启游戏被调用'); // 调试信息
         
+        // 设置重启标志，防止在重启过程中显示游戏结束界面
+        this.isRestarting = true;
+        
         // 隐藏游戏结束界面
         const gameOverScreen = document.getElementById('gameOverScreen');
         if (gameOverScreen) {
             gameOverScreen.classList.add('hidden');
-            // 清除之前可能设置的内联样式，让CSS类生效
-            gameOverScreen.style.display = '';
-            gameOverScreen.style.visibility = '';
             console.log('游戏结束界面已隐藏'); // 调试信息
         }
         
@@ -89,6 +95,9 @@ class SnakeGame {
         
         // 重置分数显示
         this.updateScoreDisplay(0);
+        
+        // 重启完成，重置标志
+        this.isRestarting = false;
         
         console.log('游戏重启完成'); // 调试信息
     }
