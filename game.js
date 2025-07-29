@@ -74,12 +74,13 @@ class SnakeGame {
     restart() {
         console.log('重启游戏被调用'); // 调试信息
         
-        // 强制隐藏游戏结束界面 - 使用多种方法确保隐藏
+        // 隐藏游戏结束界面
         const gameOverScreen = document.getElementById('gameOverScreen');
         if (gameOverScreen) {
             gameOverScreen.classList.add('hidden');
-            gameOverScreen.style.display = 'none';
-            gameOverScreen.style.visibility = 'hidden';
+            // 清除之前可能设置的内联样式，让CSS类生效
+            gameOverScreen.style.display = '';
+            gameOverScreen.style.visibility = '';
             console.log('游戏结束界面已隐藏'); // 调试信息
         }
         
